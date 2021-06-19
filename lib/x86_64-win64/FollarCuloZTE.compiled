@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\3.2.0\bin\x86_64-win64\fpc.exe" Date="1381338938"/>
+  <Params Value=" -MObjFPC -Scghi -CX -O3 -XX -WG -l -vewnhibq -FiE:\python_y_otros\RadStudio\FollarCuloZTE\lib\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\components\lazutils\lib\x86_64-win64 -FuC:\lazarus\packager\units\x86_64-win64 -FuE:\python_y_otros\RadStudio\FollarCuloZTE\ -FUE:\python_y_otros\RadStudio\FollarCuloZTE\lib\x86_64-win64\ -FEE:\python_y_otros\RadStudio\FollarCuloZTE\ -oE:\python_y_otros\RadStudio\FollarCuloZTE\FollarCuloZTE.exe -dLCL -dLCLwin32 FollarCuloZTE.lpr"/>
+</CONFIG>

@@ -1,0 +1,37 @@
+object Form1: TForm1
+  Left = 480
+  Height = 202
+  Top = 191
+  Width = 470
+  Caption = 'Form1'
+  ClientHeight = 202
+  ClientWidth = 470
+  DesignTimePPI = 120
+  OnCreate = FormCreate
+  LCLVersion = '2.0.12.0'
+  object SeleccionarArc: TEdit
+    Left = 36
+    Height = 28
+    Top = 58
+    Width = 331
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 387
+    Height = 29
+    Top = 57
+    Width = 45
+    Caption = '...'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 185
+    Height = 36
+    Top = 125
+    Width = 78
+    Caption = 'Process'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+end
