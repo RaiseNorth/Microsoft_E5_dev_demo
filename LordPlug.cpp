@@ -1,5 +1,5 @@
 /*-------------------------------------------------
-   LordPlug.dll -- LordPE¹¦ÄÜÀ©Õ¹
+   LordPlug.dll -- LordPEåŠŸèƒ½æ‰©å±•
                (c)www.pediy.com by kanxue 2005.10.10 
   -------------------------------------------------*/
 
@@ -7,15 +7,10 @@
 #include <commctrl.h>
 
 
-#define MAXINPUTLEN 512
+#define MAXINPUTLEN 1024
 
-
-//(1) ¸øLordPE²é¿´ÊäÈë±í²¿·Ö¼ÓÉÏËÑË÷¹¦ÄÜ 
 void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 {
-	try
-	{
-		
 		TCHAR cSearchBuffer[MAXINPUTLEN]={0};
 		int listcount,nSearchLength,iItem;
 		LVITEM *plvitem;
@@ -43,9 +38,6 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 		listcount=SendMessage(hWinList, LVM_GETITEMCOUNT, 0, 0);
 		if(0==listcount)
 			return;
-		
-		
-		//iItem=SendMessage(hWinList,LVM_GETNEXTITEM,-1,LVNI_FOCUSED);	//µÃµ½ËùÑ¡µÄĞĞ
 		iItem=0;
 		
 		do{
@@ -63,29 +55,22 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 		
 		if(iItem!=listcount){	
 			SetDlgItemText(hWnd,2203,pItem);
-			//Ñ¡ÖĞListView¿Ø¼şÖĞµÄItem
+			//é€‰ä¸­ListViewæ§ä»¶ä¸­çš„Item
 			plvitem->state=LVIS_SELECTED | LVIS_FOCUSED;
 			plvitem->stateMask=LVIS_SELECTED | LVIS_FOCUSED;
 			SendMessage(hWinList,LVM_SETITEMSTATE,(WPARAM)iItem, (LPARAM)plvitem);
-			//¹ö¶¯´°¿Ú
+			//æ»šåŠ¨çª—å£
 			SendMessage(hWinList,LVM_GETITEMPOSITION,(WPARAM)iItem,(LPARAM) (POINT*) pstPoint);
 			SendMessage(hWinList,LVM_SCROLL,0,pstPoint->y-50);
 		}
 		else
-			SetDlgItemText(hWnd,2203,"Ã»ÕÒµ½Ö¸¶¨ÏîÄ¿");
+			SetDlgItemText(hWnd,2203,"æ²¡æ‰¾åˆ°æŒ‡å®šé¡¹ç›®");
 		
 		
 		delete plvitem;
 		delete [] pItem;
 		delete pstPoint;
 		return;
-		
-	}
-	catch (...)
-	{
-		MessageBox(NULL,"·¢Éú´íÎó","´íÎó",MB_ICONERROR);
-		return ;
-	}
 	
 	
 }
@@ -106,7 +91,7 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 004182D2      8B4424 18           mov     eax, [esp+18]
 004182D6      25 FFFF0000         and     eax, 0FFFF
 004182DB      3D EF270000         cmp     eax, 27EE      
-004182E0      74 3E               je      short 00418320 //ÊÇ·ñ²Ù×÷ÁËËÑË÷¿ò
+004182E0      74 3E               je      short 00418320 //æ˜¯å¦æ“ä½œäº†æœç´¢æ¡†
 004182E2      68 7CD44000         push    0040D47C
 004182E7      C3                  retn
 
@@ -125,16 +110,16 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 0041834F   $  50            push    eax                              ; |hModule
 00418350   .  FF15 68914100 call    [<&KERNEL32.GetProcAddress>]     ; \GetProcAddress
 00418356   .  83C4 0C       add     esp, 0C
-00418359   .  FFD0          call    eax                             //µ÷ÓÃLordPlug.dllÖĞµÄSearchimport()º¯Êı
+00418359   .  FFD0          call    eax                             //è°ƒç”¨LordPlug.dllä¸­çš„Searchimport()å‡½æ•°
 0041835B   .  83EC 0C       sub     esp, 0C
 0041835E   .  68 7CD44000   push    0040D47C
-00418363   .  C3            retn                                     ;  RET ÓÃÀ´×÷ÎªÌø×ªµ½ 0040D47C
+00418363   .  C3            retn                                     ;  RET ç”¨æ¥ä½œä¸ºè·³è½¬åˆ° 0040D47C
 
 
  */
 
 /**************************************************************************************************************/
-//(2) ¸øLordPE²é¿´ÊäÈë±í²¿·Ö¼ÓÓÒ¼ü²Ëµ¥(½ö¸´ÖÆThunkRVA/FirstThunkÁĞ)
+//(2) ç»™LordPEæŸ¥çœ‹è¾“å…¥è¡¨éƒ¨åˆ†åŠ å³é”®èœå•(ä»…å¤åˆ¶ThunkRVA/FirstThunkåˆ—)
 
 
  void _cdecl  PopMenuCopy(const DWORD reversed, HWND hWnd)
@@ -159,7 +144,7 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 		 
 		 
 		 
-		 iItem=SendMessage(hWinList,LVM_GETNEXTITEM,-1,LVNI_FOCUSED);	//µÃµ½ËùÑ¡µÄĞĞ
+		 iItem=SendMessage(hWinList,LVM_GETNEXTITEM,-1,LVNI_FOCUSED);	//å¾—åˆ°æ‰€é€‰çš„è¡Œ
 		 if(-1==iItem)
 			 return;
 		 
@@ -169,7 +154,7 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 		 SendMessage(hWinList, LVM_GETITEMTEXT, (WPARAM)iItem, (LPARAM)plvitem);
 		 
 		 
-		 //½«È¡µÃÎÄ±¾·Åµ½¼ôÌù²¾	
+		 //å°†å–å¾—æ–‡æœ¬æ”¾åˆ°å‰ªè´´ç°¿	
 		 
 		 if(OpenClipboard(NULL)) 
 		 { 
@@ -195,7 +180,7 @@ void _cdecl Searchimport(const DWORD reversed, HWND hWnd)
 	 }
 	 catch (...)
 	 {
-		 MessageBox(NULL,"·¢Éú´íÎó","´íÎó",MB_ICONERROR);
+		 MessageBox(NULL,"å‘ç”Ÿé”™è¯¯","é”™è¯¯",MB_ICONERROR);
 		 return ;
 	 }
 	 
@@ -264,7 +249,7 @@ CASE
 004183D3      50            push    eax
 004183D4      FF15 68914100 call    [<&KERNEL32.GetProcAddress>]     ;  kernel32.GetProcAddress
 004183DA      83C4 0C       add     esp, 0C
-004183DD      FFD0          call    eax   //µ÷ÓÃPopMenuCopy
+004183DD      FFD0          call    eax   //è°ƒç”¨PopMenuCopy
 004183DF      83EC 0C       sub     esp, 0C
 004183E2      B8 01000000   mov     eax, 1
 004183E7      5E            pop     esi
@@ -274,7 +259,7 @@ CASE
 
  /**************************************************************************************************************/
 
- //(3)µ±µã»÷LordPE²é¿´ÊäÈë±í²¿·ÖÖĞ"View always FirstThunk",±£³Öµ±Ç°¹âÌõËùÔÚĞĞÔÚÔ­À´Î»ÖÃ¸½¼ş.(LordPEÄ¬ÈÏ»á½«¹âÌõÖÃµ½0ĞĞ)
+ //(3)å½“ç‚¹å‡»LordPEæŸ¥çœ‹è¾“å…¥è¡¨éƒ¨åˆ†ä¸­"View always FirstThunk",ä¿æŒå½“å‰å…‰æ¡æ‰€åœ¨è¡Œåœ¨åŸæ¥ä½ç½®é™„ä»¶.(LordPEé»˜è®¤ä¼šå°†å…‰æ¡ç½®åˆ°0è¡Œ)
 
  int _cdecl  GetNextitem(const DWORD reversed, HWND hWnd)
  {
@@ -295,7 +280,7 @@ CASE
 		 
 		 hWinList=GetDlgItem(hWnd,2202);
 		 
-		 iItem=SendMessage(hWinList,LVM_GETNEXTITEM,-1,LVNI_FOCUSED);	//µÃµ½ËùÑ¡µÄĞĞ
+		 iItem=SendMessage(hWinList,LVM_GETNEXTITEM,-1,LVNI_FOCUSED);	//å¾—åˆ°æ‰€é€‰çš„è¡Œ
 		 if(-1==iItem)
 			 return 0;
 		 
@@ -306,7 +291,7 @@ CASE
 	 }
 	 catch (...)
 	 {
-		 MessageBox(NULL,"·¢Éú´íÎó","´íÎó",MB_ICONERROR);
+		 MessageBox(NULL,"å‘ç”Ÿé”™è¯¯","é”™è¯¯",MB_ICONERROR);
 		 return FALSE;
 	 }
 	 
@@ -338,11 +323,11 @@ CASE
 		 if(0==SendMessage(hWinList, LVM_GETITEMCOUNT, 0, 0))
 			 return;
 		 
-		 //Ñ¡ÖĞListView¿Ø¼şÖĞµÄItem
+		 //é€‰ä¸­ListViewæ§ä»¶ä¸­çš„Item
 		 plvitem->state=LVIS_SELECTED | LVIS_FOCUSED;
 		 plvitem->stateMask=LVIS_SELECTED | LVIS_FOCUSED;
 		 SendMessage(hWinList,LVM_SETITEMSTATE,(WPARAM)iItem, (LPARAM)plvitem);
-		 //¹ö¶¯´°¿Ú
+		 //æ»šåŠ¨çª—å£
 		 SendMessage(hWinList,LVM_GETITEMPOSITION,(WPARAM)iItem,(LPARAM) (POINT*) pstPoint);
 		 SendMessage(hWinList,LVM_SCROLL,0,pstPoint->y-50);
 		 SetFocus(hWinList);
@@ -356,7 +341,7 @@ CASE
 	 }
 	 catch (...)
 	 {
-		 MessageBox(NULL,"·¢Éú´íÎó","´íÎó",MB_ICONERROR);
+		 MessageBox(NULL,"å‘ç”Ÿé”™è¯¯","é”™è¯¯",MB_ICONERROR);
 		 return;
 	 }
 	 
@@ -383,7 +368,7 @@ CASE
 0041830C      83C4 0C       add     esp, 0C
 0041830F      FFD0          call    eax
 00418311      83EC 0C       sub     esp, 0C
-00418314      A3 D0EB4100   mov     [41EBD0], eax //·µ»ØÖµ·ÅÈ«¾Ö±äÁ¿ÖĞ
+00418314      A3 D0EB4100   mov     [41EBD0], eax //è¿”å›å€¼æ”¾å…¨å±€å˜é‡ä¸­
 00418319      68 39D54000   push    0040D539
 0041831E      C3            retn
 
@@ -404,7 +389,7 @@ CASE
 
 
 
-.rdata¶Î
+.rdataæ®µ
 0041A689    68 25834100     push    00418325
 0041A68E    FF15 C0904100   call    [<&KERNEL32.LoadLibraryA>]       ; kernel32.LoadLibraryA
 0041A694    E8 11000000     call    0041A6AA
@@ -434,7 +419,7 @@ CASE
  */
 /*
  (4)
-ĞŞ¸ÄFLC(File Location Calulator)´°¿Ú,¸÷¸öÎÄ±¾¿ò(VA,RVA,Offset)ÎªÖ»¶ÁÊôĞÔ,´ËÊ±¿ÉÒÔÓÃÊó±ê¸´ÖÆÀïÃæµÄÎÄ±¾.(LordPEÔ­À´ÊÇ½«ÎÄ±¾¿ò½ûÖ¹±ä»Ò,´ËÊ±²»¿É¸´ÖÆ)
+ä¿®æ”¹FLC(File Location Calulator)çª—å£,å„ä¸ªæ–‡æœ¬æ¡†(VA,RVA,Offset)ä¸ºåªè¯»å±æ€§,æ­¤æ—¶å¯ä»¥ç”¨é¼ æ ‡å¤åˆ¶é‡Œé¢çš„æ–‡æœ¬.(LordPEåŸæ¥æ˜¯å°†æ–‡æœ¬æ¡†ç¦æ­¢å˜ç°,æ­¤æ—¶ä¸å¯å¤åˆ¶)
 
 SendMessage(hWnd,EM_SETREADONLY,(WPARAM) bEnable,0);
 
